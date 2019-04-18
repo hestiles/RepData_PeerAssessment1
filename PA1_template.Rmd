@@ -80,7 +80,31 @@ merged$stepsimputed=ifelse(is.na(merged$steps.x), merged$steps.y, merged$steps.x
 3. Create new data set
 ```{r}
 imputed<-merged[, c(1, 3, 5)]
-```
+```  
+4. Create histogram of total steps per day  
+-Calculate total steps per day
+```{r}
+imputedtotal<-aggregate(stepsimputed~date,imputed, sum)
+```  
+-create histogram
+```{r}
+ggplot(imputedtotal, aes(x=stepsimputed)) +geom_histogram(bins=5)+ labs(title="Total Steps Per Day",subtitle="Uses average number of steps for interval for missing values", x="Steps", y="Frequency")
+```    
+
+-Mean number of steps per day
+```{r}
+mean(imputedtotal$steps)
+```  
+-Median number of steps per day
+```{r}
+median(imputedtotal$steps)
+```  
+The mean is the same whether we impute missing values or not.  
+The median is slightly higher.  
+
+
+
+
 
 
 
