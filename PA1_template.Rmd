@@ -9,6 +9,7 @@ output:
 library(readr)
 library(ggplot2)
 library(dplyr)
+library(chron)
 ```
 
 
@@ -102,12 +103,11 @@ median(imputedtotal$steps)
 The mean is the same whether we impute missing values or not.  
 The median is slightly higher.  
 
+## Are there differences in activity patterns between weekdays and weekends?  
+1. Create factor variable for weekday or weekend.  
+```{r}
+first<-mutate(imputedtotal, weekend=is.weekend(imputedtotal$date)) 
+second<-mutate(first, type=factor(weekend, levels=c("TRUE", "FALSE"), labels=c("weekend", "weekday")))
+```
 
 
-
-
-
-
-
-
-## Are there differences in activity patterns between weekdays and weekends?
