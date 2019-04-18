@@ -45,6 +45,15 @@ median(total$steps)
 
 
 ## What is the average daily activity pattern?
+1. Calculate Average number of steps taken per interval
+```{r}
+avgperint<-aggregate(steps~interval, activity, mean)
+```
+2. Create Time series plot
+```{r}
+qplot(interval, steps, data=avgperint, type="l")
+plot(avgperint$interval, avgperint$steps,  type="l", main="Avg steps per interval", xlab="interval", ylab="steps")
+```
 
 
 
