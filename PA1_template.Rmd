@@ -21,6 +21,11 @@ activity <- read_csv("activity.csv", col_types = cols(date = col_date(format = "
 
 
 ## What is mean total number of steps taken per day?
+```{r}
+meanday<-aggregate(steps~date,activity, sum)
+mean(meanday$steps)
+```
+
 
 
 
