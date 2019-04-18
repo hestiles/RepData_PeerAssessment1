@@ -106,8 +106,22 @@ The median is slightly higher.
 ## Are there differences in activity patterns between weekdays and weekends?  
 1. Create factor variable for weekday or weekend.  
 ```{r}
-first<-mutate(imputedtotal, weekend=is.weekend(imputedtotal$date)) 
+first<-mutate(merged, weekend=is.weekend(merged$date)) 
 second<-mutate(first, type=factor(weekend, levels=c("TRUE", "FALSE"), labels=c("weekend", "weekday")))
+```  
+2. Make a panel plot of the 5 minute interval and avg number of steps take.  
+-Calculate Average number of steps taken per interval per type of day
+```{r}
+impavgperint<-aggregate(stepsimputed~interval+type, second, mean)
 ```
+Create Time series plot
+```{r}
+weekend<-filter(impavgperint, type=="weekend")
+weekday<-filter(impavgperint, type=="weekday")
+
+par(mfrow=c(2,1))
+plot(weekend$interval, weekend$steps,  type="l", main="Avg Weekend steps per interval", xlab="interval", ylab="steps")
+plot(weekday$interval, weekday$steps,  type="l", main="Avg Weekday steps per interval", xlab="interval", ylab="steps")
+```  
 
 
