@@ -30,9 +30,7 @@ total<-aggregate(steps~date,activity, sum)
 
 2.Histogram of total number of steps taken each day
 ```{r}
-qplot(total$steps, geom="histogram", main="Total Steps Per Day", xlab="Steps", ylab="Frequency", ylim=c(0,10))
-
-hist(total$steps)
+ggplot(total, aes(x=steps)) +geom_histogram(bins=5)+ labs(title="Total Steps Per Day", x="Steps", y="Frequency")
 ```
 
 3. Mean and Median number of steps taken per day  
