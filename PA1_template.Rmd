@@ -4,9 +4,19 @@ output:
   html_document:
     keep_md: true
 ---
+## Packages
+```{r}
+library(readr)
+```
 
 
 ## Loading and preprocessing the data
+
+```{r}
+unzip("activity.zip")
+activity <- read_csv("activity.csv", col_types = cols(date = col_date(format = "%Y-%m-%d"), 
+    steps = col_integer()))
+```
 
 
 
