@@ -4,13 +4,16 @@ output:
   html_document:
     keep_md: true
 ---
+
 ## Packages
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(readr)
 library(ggplot2)
 library(dplyr)
 library(chron)
+
 ```
+
 
 
 ## Loading and preprocessing the data
@@ -24,12 +27,10 @@ activity <- read_csv("activity.csv", col_types = cols(date = col_date(format = "
 
 
 ## What is mean total number of steps taken per day?
-
 1. Calculate Total Number of steps taken per day
 ```{r}
 total<-aggregate(steps~date,activity, sum)
 ```
-
 2.Histogram of total number of steps taken each day
 ```{r}
 ggplot(total, aes(x=steps)) +geom_histogram(bins=5)+ labs(title="Total Steps Per Day", x="Steps", y="Frequency")
@@ -114,7 +115,7 @@ second<-mutate(first, type=factor(weekend, levels=c("TRUE", "FALSE"), labels=c("
 ```{r}
 impavgperint<-aggregate(stepsimputed~interval+type, second, mean)
 ```
-Create Time series plot
+-Create Time series plot
 ```{r}
 weekend<-filter(impavgperint, type=="weekend")
 weekday<-filter(impavgperint, type=="weekday")
