@@ -52,12 +52,16 @@ avgperint<-aggregate(steps~interval, activity, mean)
 ```
 Create Time series plot
 ```{r}
-qplot(interval, steps, data=avgperint, type="l")
 plot(avgperint$interval, avgperint$steps,  type="l", main="Avg steps per interval", xlab="interval", ylab="steps")
-```
+```  
+
 2. Interval with maximum number of steps
+Arrange the intervals from greatest number of steps to least
 ```{r}
 max<-arrange(avgperint, desc(avgperint$steps))
+```
+The interval with the maximum number of steps
+```{r}
 max[1,1]
 ```
 
