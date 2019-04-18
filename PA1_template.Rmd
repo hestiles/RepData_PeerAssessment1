@@ -8,6 +8,7 @@ output:
 ```{r}
 library(readr)
 library(ggplot2)
+library(dplyr)
 ```
 
 
@@ -49,10 +50,15 @@ median(total$steps)
 ```{r}
 avgperint<-aggregate(steps~interval, activity, mean)
 ```
-2. Create Time series plot
+Create Time series plot
 ```{r}
 qplot(interval, steps, data=avgperint, type="l")
 plot(avgperint$interval, avgperint$steps,  type="l", main="Avg steps per interval", xlab="interval", ylab="steps")
+```
+2. Interval with maximum number of steps
+```{r}
+max<-arrange(avgperint, desc(avgperint$steps))
+max[1,1]
 ```
 
 
